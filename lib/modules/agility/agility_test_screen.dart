@@ -6,7 +6,7 @@ import 'components/agility_shape_painter.dart';
 
 class AgilityTestScreen extends StatefulWidget {
   final bool isPractice;
-  final VoidCallback onSelectNext;
+  final Function(int correctResponses) onSelectNext;
 
   const AgilityTestScreen({
     super.key,
@@ -196,7 +196,7 @@ class _AgilityTestScreenState extends State<AgilityTestScreen>
     _controller.stop();
     _spawnTimer?.cancel();
     _feedbackTimer?.cancel();
-    widget.onSelectNext();
+    widget.onSelectNext(_correctResponses);
   }
 
   @override

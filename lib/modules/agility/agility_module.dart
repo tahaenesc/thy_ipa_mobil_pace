@@ -25,12 +25,12 @@ class _AgilityModuleState extends State<AgilityModule> {
       case AgilityState.practice:
         return AgilityTestScreen(
           isPractice: true,
-          onSelectNext: () => setState(() => _state = AgilityState.realTest),
+          onSelectNext: (_) => setState(() => _state = AgilityState.realTest),
         );
       case AgilityState.realTest:
         return AgilityTestScreen(
           isPractice: false,
-          onSelectNext: () => Navigator.pop(context),
+          onSelectNext: (_) => Navigator.pop(context),
         );
     }
   }
