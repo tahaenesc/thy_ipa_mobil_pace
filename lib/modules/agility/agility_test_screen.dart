@@ -23,7 +23,7 @@ class _AgilityTestScreenState extends State<AgilityTestScreen>
   late AnimationController _controller;
   final List<AgilityShape> _shapes = [];
   final Random _random = Random();
-  late Timer _spawnTimer;
+  Timer? _spawnTimer;
   
   String _feedbackMessage = '';
   Color _feedbackColor = Colors.black;
@@ -57,6 +57,10 @@ class _AgilityTestScreenState extends State<AgilityTestScreen>
 
   void _startCountdown() {
     Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
       if (_countdown > 1) {
         setState(() => _countdown--);
       } else {
@@ -190,7 +194,7 @@ class _AgilityTestScreenState extends State<AgilityTestScreen>
 
   void _finishTest() {
     _controller.stop();
-    _spawnTimer.cancel();
+    _spawnTimer?.cancel();
     _feedbackTimer?.cancel();
     widget.onSelectNext();
   }
@@ -198,7 +202,7 @@ class _AgilityTestScreenState extends State<AgilityTestScreen>
   @override
   void dispose() {
     _controller.dispose();
-    _spawnTimer.cancel();
+    _spawnTimer?.cancel();
     _feedbackTimer?.cancel();
     super.dispose();
   }

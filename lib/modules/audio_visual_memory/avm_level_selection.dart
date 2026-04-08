@@ -19,15 +19,18 @@ class AVMLevelSelection extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildLevelCard(context, 'EASY', 1),
-                      const SizedBox(width: 40),
-                      _buildLevelCard(context, 'MEDIUM', 2),
-                      const SizedBox(width: 40),
-                      _buildLevelCard(context, 'HARD', 3),
-                    ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildLevelCard(context, 'EASY', 1),
+                        const SizedBox(width: 40),
+                        _buildLevelCard(context, 'MEDIUM', 2),
+                        const SizedBox(width: 40),
+                        _buildLevelCard(context, 'HARD', 3),
+                      ],
+                    ),
                   ),
                   const Spacer(),
                   const Text(
